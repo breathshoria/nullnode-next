@@ -6,6 +6,7 @@ import React, {useRef, Fragment} from 'react'
 const navigation = [
     {name: 'Projects', href: '/projects', authRequired: false},
     {name: 'About', href: '/about', authRequired: false},
+    {name: 'Dashboard', href: '/dashboard', authRequired: false}
 ]
 
 
