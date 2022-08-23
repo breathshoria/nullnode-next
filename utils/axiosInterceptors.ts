@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosRequestConfig} from "axios";
 
 const options = {
     baseURL: process.env.NEXT_PUBLIC_API,
@@ -8,8 +8,8 @@ const options = {
 
 const api = axios.create(options)
 
-api.interceptors.request.use((config) => {
-    config.headers.Authorization = `bearer ${localStorage.getItem('accessToken')}`
+api.interceptors.request.use((config: AxiosRequestConfig) => {
+    config.headers!.Authorization = `bearer ${localStorage.getItem('accessToken')}`
     return config
 })
 
