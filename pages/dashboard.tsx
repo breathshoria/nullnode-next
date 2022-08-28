@@ -4,14 +4,19 @@ import ProjectType from "../types/project.interface";
 import AddProject from "../components/dashboard/AddProject";
 import EditProject from "../components/dashboard/EditProject";
 import api from "../utils/axiosInterceptors";
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/router";
+import Loader from "../components/helpers/Loader";
 
 type DashboardProject = Pick<ProjectType, "id" | "title" | "description" | "logoUrl" | "onGoing">
 
-const Projects = () => {
+const Dashboard = () => {
     const [projects, setProjects] = useState<DashboardProject[] | null>(null);
     const [isAddFormOpened, setAddFormOpened] = useState(false);
     const [isEditFormOpened, setEditFormOpened] = useState(false);
     const [editableProjectId, setEditableProjectId] = useState<number | null>(null);
+    const {status}  = useSession();
+    const router = useRouter();
 
     const fetchProjects = async () => {
         try {
@@ -67,6 +72,19 @@ const Projects = () => {
         )
     }
 
+    if (status === 'loading') {
+        return (
+            <div className={'bg-gray-800 my-auto h-screen mb-12 flex items-center justify-center'}>
+                <Loader className={'w-10 h-10'}></Loader>
+            </div>
+        )
+    }
+
+    if (status === 'unauthenticated') {
+        router.replace('/login');
+        return <div className={'bg-gray-800 h-screen mb-12'} />
+    }
+
     return (
         <div className="min-h-screen">
             <span className={'text-2xl inline-block w-full text-center p-2'}>Manage projects</span>
@@ -93,4 +111,4 @@ const Projects = () => {
     );
 }
 
-export default Projects;
+export default Dashboard;
