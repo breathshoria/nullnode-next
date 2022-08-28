@@ -2,11 +2,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import React, {useRef, Fragment} from 'react'
+import {useSession} from "next-auth/react";
+import {signOut} from "next-auth/react";
 
 const navigation = [
     {name: 'Projects', href: '/projects', authRequired: false},
     {name: 'About', href: '/about', authRequired: false},
-    {name: 'Dashboard', href: '/dashboard', authRequired: false}
+    {name: 'Dashboard', href: '/dashboard', authRequired: true}
 ]
 
 
@@ -16,6 +18,8 @@ function classNames(...classes: string[]) {
 
 const Nav = () => {
     const router = useRouter();
+    const {data: session, status}  = useSession();
+    console.log(status)
     const currentPath = router.pathname;
     const menuDropdown = useRef<HTMLDivElement>(null)
     const menuButton = useRef<HTMLDivElement>(null)
@@ -50,6 +54,7 @@ const Nav = () => {
                     <div
                         className="flex flex-col p-2 border w-56 h-56 shadow-black shadow-sm rounded-b-md border-gray-900 bg-gray-900">
                         {navigation
+                            .filter((item) => !item.authRequired || item.authRequired === (status === 'authenticated'))
                             .map((item) => (
                                 <Link
                                     href={item.href}
@@ -88,6 +93,7 @@ const Nav = () => {
                         <div className="hidden sm:block sm:ml-6">
                             <div className="flex space-x-4">
                                 {navigation
+                                    .filter((item) => !item.authRequired || item.authRequired === (status === 'authenticated'))
                                     .map((item) => (
                                         <Link
                                             href={item.href}
@@ -109,6 +115,51 @@ const Nav = () => {
                             </div>
                         </div>
                     </div>
+                    {status !== 'authenticated' && <div className={"hidden sm:flex sm:gap-2"}>
+                        <Link href={'/login'}>
+                            <span className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Log In</span>
+                        </Link>
+                        <Link href={'/register'}>
+                            <span className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Sign Up</span>
+                        </Link>
+                    </div>}
+                    {status === 'authenticated' && <Menu as="div" className="relative z-10">
+                        <Menu.Button
+                            className="bg-gray-800 px-3 py-2 text-sm rounded-md hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                            {session.user?.username}
+                        </Menu.Button>
+                        <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                        >
+                            <Menu.Items
+                                className="origin-top-right absolute p-2 right-0 mt-2 w-fit rounded-md shadow-lg bg-gray-900  focus:outline-none">
+                                <Menu.Item>
+                                    <button
+                                        className={classNames('block w-20 py-2 text-sm text-white hover:bg-sky-700')}
+                                    >
+                                        <span className={'text-sm'}>Profile</span>
+                                    </button>
+                                </Menu.Item>
+                                <Menu.Item>
+
+                                    <button
+                                        onClick={() => signOut()}
+                                        className={classNames('block w-20 py-2 text-sm text-white hover:bg-sky-700')}
+                                    >
+                                        <span className={'text-sm'}>Sign out</span>
+                                    </button>
+
+                                </Menu.Item>
+                            </Menu.Items>
+                        </Transition>
+                    </Menu>
+                    }
                 </div>
             </div>
         </Disclosure>
