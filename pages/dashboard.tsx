@@ -15,11 +15,13 @@ const Dashboard = () => {
     const [isAddFormOpened, setAddFormOpened] = useState(false);
     const [isEditFormOpened, setEditFormOpened] = useState(false);
     const [editableProjectId, setEditableProjectId] = useState<number | null>(null);
-    const {status}  = useSession();
+    const [isLoading, setLoading] = useState(false);
+    const {data: session, status}  = useSession();
     const router = useRouter();
 
     const fetchProjects = async () => {
         try {
+            setLoading(true)
             const response = await api.get('projects');
             const dashboardProjects = response.data.map((project: DashboardProject) => {
                 return {
@@ -33,6 +35,8 @@ const Dashboard = () => {
             setProjects(dashboardProjects);
         } catch (e) {
             throw (e);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -72,7 +76,7 @@ const Dashboard = () => {
         )
     }
 
-    if (status === 'loading') {
+    if (status === 'loading' || isLoading) {
         return (
             <div className={'bg-gray-800 my-auto h-screen mb-12 flex items-center justify-center'}>
                 <Loader className={'w-10 h-10'}></Loader>
@@ -83,6 +87,14 @@ const Dashboard = () => {
     if (status === 'unauthenticated') {
         router.replace('/login');
         return <div className={'bg-gray-800 h-screen mb-12'} />
+    }
+
+    if (!session?.user.roles?.includes('admin')) {
+        return(
+            <div className={'bg-gray-800 h-screen mb-12 flex flex-col items-center justify-center'}>
+                <p>Unauthorized to watch this page</p>
+            </div>
+        )
     }
 
     return (

@@ -8,7 +8,7 @@ import {signOut} from "next-auth/react";
 const navigation = [
     {name: 'Projects', href: '/projects', authRequired: false},
     {name: 'About', href: '/about', authRequired: false},
-    {name: 'Dashboard', href: '/dashboard', authRequired: true}
+    {name: 'Dashboard', href: '/dashboard', authRequired: true, role: 'admin'}
 ]
 
 
@@ -19,7 +19,7 @@ function classNames(...classes: string[]) {
 const Nav = () => {
     const router = useRouter();
     const {data: session, status}  = useSession();
-    console.log(status)
+    console.log(session)
     const currentPath = router.pathname;
     const menuDropdown = useRef<HTMLDivElement>(null)
     const menuButton = useRef<HTMLDivElement>(null)
@@ -54,7 +54,9 @@ const Nav = () => {
                     <div
                         className="flex flex-col p-2 border w-56 h-56 shadow-black shadow-sm rounded-b-md border-gray-900 bg-gray-900">
                         {navigation
-                            .filter((item) => !item.authRequired || item.authRequired === (status === 'authenticated'))
+                            .filter((item) => !item.authRequired
+                                || (item.authRequired === (status === 'authenticated')) && (session?.user.roles?.includes(item.role))
+                            )
                             .map((item) => (
                                 <Link
                                     href={item.href}
@@ -93,8 +95,10 @@ const Nav = () => {
                         <div className="hidden sm:block sm:ml-6">
                             <div className="flex space-x-4">
                                 {navigation
-                                    .filter((item) => !item.authRequired || item.authRequired === (status === 'authenticated'))
-                                    .map((item) => (
+                                    .filter((item) =>  !item.authRequired
+                                        || (item.authRequired === (status === 'authenticated')) && (session?.user.roles?.includes(item.role))
+                                    )
+                                            .map((item) => (
                                         <Link
                                             href={item.href}
                                             key={item.name}
@@ -115,7 +119,7 @@ const Nav = () => {
                             </div>
                         </div>
                     </div>
-                    {status !== 'authenticated' && <div className={"hidden sm:flex sm:gap-2"}>
+                    {status === 'unauthenticated' && <div className={"hidden sm:flex sm:gap-2"}>
                         <Link href={'/login'}>
                             <span className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Log In</span>
                         </Link>
