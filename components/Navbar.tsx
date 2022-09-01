@@ -7,8 +7,8 @@ import {signOut} from "next-auth/react";
 
 const navigation = [
     {name: 'Projects', href: '/projects', authRequired: false},
+    {name: 'Dashboard', href: '/dashboard', authRequired: true, role: 'admin'},
     {name: 'About', href: '/about', authRequired: false},
-    {name: 'Dashboard', href: '/dashboard', authRequired: true, role: 'admin'}
 ]
 
 
@@ -19,7 +19,6 @@ function classNames(...classes: string[]) {
 const Nav = () => {
     const router = useRouter();
     const {data: session, status}  = useSession();
-    console.log(session)
     const currentPath = router.pathname;
     const menuDropdown = useRef<HTMLDivElement>(null)
     const menuButton = useRef<HTMLDivElement>(null)
@@ -45,6 +44,7 @@ const Nav = () => {
             menuDropdown.current?.classList.remove('opacity-100')
         })
     }
+
     return (
         <Disclosure as="nav" className="bg-gray-900 rounded-b-lg">
             <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
