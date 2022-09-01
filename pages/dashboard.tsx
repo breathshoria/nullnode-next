@@ -3,7 +3,7 @@ import DashboardCard from "../components/dashboard/DashboardCard";
 import ProjectType from "../types/project.interface";
 import AddProject from "../components/dashboard/AddProject";
 import EditProject from "../components/dashboard/EditProject";
-import api from "../utils/axiosInterceptors";
+import {api} from "../utils/axiosInterceptors";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Loader from "../components/helpers/Loader";
@@ -76,10 +76,10 @@ const Dashboard = () => {
         )
     }
 
-    if (status === 'loading' || isLoading) {
-        return (
-            <div className={'bg-gray-800 my-auto h-screen mb-12 flex items-center justify-center'}>
-                <Loader className={'w-10 h-10'}></Loader>
+    if (isLoading) {
+        return(
+            <div className={'min-h-screen bg-gray-800 flex flex-col items-center justify-center'}>
+                <Loader className={'w-10 h-10'} />
             </div>
         )
     }
