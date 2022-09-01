@@ -8,32 +8,13 @@ const options = {
 
 const api = axios.create(options)
 
-api.interceptors.request.use((config: AxiosRequestConfig) => {
-    config.headers!.Authorization = `bearer ${localStorage.getItem('accessToken')}`
+//TODO: this only set bearer on client side
+const setBearer = (token: string) => {
+    api.defaults.headers.common['Authorization'] = `bearer ${token}`
+}
+
+api.interceptors.request.use(async (config: AxiosRequestConfig) => {
     return config
 })
 
-api.interceptors.response.use((config) => {
-    return config
-}, async (error) => {
-    const origin = error.config
-    const accessToken = localStorage.getItem('accessToken');
-    if ( error.response.status === 401 && origin && !origin._isRetry && accessToken) {
-        origin._isRetry = true
-        try {
-            const response = await axios.get('/users/refreshToken', {
-                ...options,
-                headers: {
-                    authorization: `bearer ${localStorage.getItem('accessToken')}`
-                }
-
-            })
-            localStorage.setItem('accessToken', response.data.accessToken)
-            return api.request(origin)
-        } catch (e) {
-            throw e;
-        }
-    }
-    throw error
-})
-export default api
+export {api, setBearer}
