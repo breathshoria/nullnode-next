@@ -8,6 +8,7 @@ import axios from "axios";
 import {GetStaticProps, GetStaticPaths, NextPage} from "next";
 import { ParsedUrlQuery } from 'querystring';
 import ProjectType from "../../types/project.interface";
+import PageHead from "../../components/PageHead";
 
 interface Props {
     project: ProjectType;
@@ -50,6 +51,7 @@ const Project: NextPage<Props> = ({project}) => {
     return (
         <>
             <div className={'min-h-screen p-5 w-full flex flex-col gap-4 items-center mx-auto'}>
+                <PageHead title={project.title} />
                 <div
                     className={'w-1/2 p-2 flex flex-col justify-evenly gap-1 sm:gap-0 sm:flex-row items-center'}>
                     <img

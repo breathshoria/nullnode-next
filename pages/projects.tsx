@@ -3,6 +3,7 @@ import axios from "axios";
 import ProjectCard from "../components/project/ProjectCard";
 import {GetStaticProps, NextPage} from "next";
 import ProjectType from "../types/project.interface";
+import PageHead from "../components/PageHead";
 
 interface Props {
     projects: ProjectType[];
@@ -34,6 +35,7 @@ export async function getStaticProps() {
 const Projects: NextPage<Props> = ({projects}) => {
     return (
         <div className="min-h-screen">
+            <PageHead title={'Projects'} />
             <span className={'text-2xl inline-block w-full text-center p-2'}>My projects</span>
             <div className={'p-5 flex flex-col sm:grid sm:grid-cols-3 gap-4 items-center justify-center'}>
                 {projects?.map((project) => (

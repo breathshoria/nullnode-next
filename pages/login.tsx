@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {signIn} from "next-auth/react";
 import Link from "next/link";
 import Loader from "../components/helpers/Loader";
+import PageHead from "../components/PageHead";
 
 const Login = () => {
     const [credentials, setCredentials] = useState({
@@ -29,6 +30,7 @@ const Login = () => {
 
     return (
         <div className={'min-h-screen mt-5 flex flex-col items-center'}>
+            <PageHead title={'Login'} />
             <form className={'w-2/3 sm:w-1/3'}>
                 <label>
                     <span className={'text-lg sm:text-base'}>Username</span>

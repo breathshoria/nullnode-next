@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import ProjectType from "../../types/project.interface";
 import Loader from "../helpers/Loader";
+import PageHead from "../PageHead";
 
 interface Props {
     toggleEditForm: Function;
@@ -88,6 +89,7 @@ const EditProject = ({toggleEditForm, projectId}: Props) => {
     }
     return (
         <div className={'min-h-screen p-5 flex flex-col items-center relative'}>
+            <PageHead title={'Edit project'} />
             <button className={'absolute top-0 right-0 p-5'} onClick={() => toggleEditForm()}>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

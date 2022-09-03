@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import api from "../utils/axiosInterceptors";
+import {api} from "../utils/axiosInterceptors";
 import Loader from "../components/helpers/Loader";
 import User from "../types/user.interface"
 import {useRouter} from "next/router";
+import PageHead from "../components/PageHead";
 
 const Register = () => {
     const [credentials, setCredentials] = useState<User>({
@@ -37,6 +38,7 @@ const Register = () => {
     }
     return (
         <div className={'min-h-screen mt-5 flex flex-col items-center'}>
+            <PageHead title={'Register'} />
             {/* {auth?.error && <Error error={auth.error}></Error>} */}
             <form className={'w-2/3 sm:w-1/3'}>
                 <div className={'pb-2'}>

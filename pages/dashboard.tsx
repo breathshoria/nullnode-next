@@ -7,6 +7,7 @@ import {api} from "../utils/axiosInterceptors";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Loader from "../components/helpers/Loader";
+import PageHead from "../components/PageHead";
 
 type DashboardProject = Pick<ProjectType, "id" | "title" | "description" | "logoUrl" | "onGoing">
 
@@ -99,6 +100,7 @@ const Dashboard = () => {
 
     return (
         <div className="min-h-screen">
+            <PageHead title={'Dashboard'} />
             <span className={'text-2xl inline-block w-full text-center p-2'}>Manage projects</span>
             <div className={'p-2 mt-5 flex flex-col gap-4 justify-center items-center'}>
                 {projects?.map((project, index) => (
