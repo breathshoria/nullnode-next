@@ -1,5 +1,5 @@
 export default interface ProjectType {
-    id: number | undefined;
+    id: number;
     title: string;
     description: string;
     stage: string;
