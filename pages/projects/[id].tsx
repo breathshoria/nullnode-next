@@ -9,6 +9,7 @@ import {GetStaticProps, GetStaticPaths, NextPage} from "next";
 import { ParsedUrlQuery } from 'querystring';
 import ProjectType from "../../types/project.interface";
 import PageHead from "../../components/PageHead";
+import SubscribeButton from "../../components/project/SubscribeButton";
 
 interface Props {
     project: ProjectType;
@@ -47,13 +48,13 @@ export const getStaticProps: GetStaticProps<Props, Params> = async(context) => {
 }
 
 const Project: NextPage<Props> = ({project}) => {
-
     return (
         <>
             <div className={'min-h-screen p-5 w-full flex flex-col gap-4 items-center mx-auto'}>
                 <PageHead title={project.title} />
                 <div
-                    className={'w-1/2 p-2 flex flex-col justify-evenly gap-1 sm:gap-0 sm:flex-row items-center'}>
+                    className={'w-1/2 p-2 flex flex-col justify-evenly gap-1 sm:gap-0 sm:flex-row items-center border-b-2 border-b-sky-700'}
+                >
                     <img
                         className={'w-20 inline-block rounded-full p-1'}
                         src={`${process.env.NEXT_PUBLIC_API}/${project.logoUrl}`}
@@ -74,18 +75,19 @@ const Project: NextPage<Props> = ({project}) => {
                         </div>
                     </div>
                 </div>
+                <SubscribeButton projectId={project.id} />
                 <div className={'mt-2 grid sm:grid-cols-2 gap-5 w-3/4'}>
-                    <div className={'border-sky-700 border-2 rounded-md p-4 flex flex-col'}>
+                    <div className={'border-sky-700 border-2 rounded-xl p-4 flex flex-col'}>
                         <p className={'text-center font-medium text-lg bg-sky-700 mb-2 rounded-md'}>Summary</p>
                         <ReactMarkdown className={'prose prose-invert'}>{project.summary}</ReactMarkdown>
                     </div>
-                    <div className={'border-sky-700 border-2 rounded-md p-4 flex flex-col'}>
+                    <div className={'border-sky-700 border-2 rounded-xl p-4 flex flex-col'}>
                         <p className={'text-center font-medium text-lg bg-sky-700 mb-2 rounded-md'}>Contribution</p>
                         <ReactMarkdown className={'prose prose-md prose-invert m-0'}>{project.involvement}</ReactMarkdown>
                     </div>
                 </div>
                 <div className={'mt-2 flex flex-col w-3/4'}>
-                    <div className={'border-sky-700 border-2 rounded-md p-4 flex flex-col'}>
+                    <div className={'border-sky-700 border-2 rounded-xl p-4 flex flex-col'}>
                         <h1 className={'text-center font-medium text-lg bg-sky-700 mb-2 rounded-md'}>Guide</h1>
                         <ReactMarkdown className={'prose prose-invert'}>{project.guide}</ReactMarkdown>
                     </div>
