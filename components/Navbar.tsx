@@ -87,9 +87,7 @@ const Nav = () => {
                     <div className="flex items-center justify-start pl-3 sm:pl-0 sm:items-stretch sm:justify-start grow">
                         <div className="self-center">
                             <Link href="/">
-                                <span className="text-neutral-100 text-base font-mono">
-                                    nullnode
-                                 </span>
+                                    <p className={'text-neutral-100 text-base font-mono'}>nullnode</p>
                             </Link>
                         </div>
                         <div className="hidden sm:block sm:ml-6">

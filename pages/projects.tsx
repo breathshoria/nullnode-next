@@ -37,7 +37,7 @@ const Projects: NextPage<Props> = ({projects}) => {
         <div className="min-h-screen">
             <PageHead title={'Projects'} />
             <span className={'text-2xl inline-block w-full text-center p-2'}>My projects</span>
-            <div className={'p-5 flex flex-col sm:grid sm:grid-cols-3 gap-4 items-center justify-center'}>
+            <div className={'p-4 flex flex-col mx-auto w-3/4 sm:grid sm:grid-cols-3 gap-3 items-center justify-items-center justify-center'}>
                 {projects?.map((project) => (
                     <ProjectCard
                         key={project.id}
