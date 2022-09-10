@@ -30,7 +30,7 @@ const Login = () => {
 
     return (
         <div className={'min-h-screen mt-5 flex flex-col items-center'}>
-            <PageHead title={'Login'} />
+            <PageHead title={'Login'}/>
             <form className={'w-2/3 sm:w-1/3'}>
                 <label>
                     <span className={'text-lg sm:text-base'}>Username</span>

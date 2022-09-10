@@ -3,7 +3,7 @@ import ProjectType from "../../types/project.interface";
 import axios from "axios";
 import PageHead from "../PageHead";
 
-type AddProjectType = Omit<ProjectType, "id" | "logoUrl">  & {
+type AddProjectType = Omit<ProjectType, "id" | "logoUrl"> & {
     logo: File | null;
 }
 
@@ -32,9 +32,9 @@ const AddProject = ({toggleAddForm}: Props) => {
     const handleChange = (event: any) => {
         const {name, value, checked, files} = event.target;
         if (name === 'onGoing') {
-           event.target.checked = checked;
-           project.onGoing = event.target.checked.toString();
-           return setProject(project)
+            event.target.checked = checked;
+            project.onGoing = event.target.checked.toString();
+            return setProject(project)
         }
         if (name === 'logo') {
             project.logo = files[0];
@@ -56,10 +56,11 @@ const AddProject = ({toggleAddForm}: Props) => {
 
     return (
         <div className={'min-h-screen p-5 flex flex-col items-center relative'}>
-            <PageHead title={'Add Project'} />
+            <PageHead title={'Add Project'}/>
             <button className={'absolute top-0 right-0 p-5'} onClick={() => toggleAddForm()}>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
             <form className={'w-2/3'}>
@@ -79,7 +80,7 @@ const AddProject = ({toggleAddForm}: Props) => {
                 <div className={'pb-2'}>
                     <label>
                         <span className={'text-lg sm:text-base'}>Logo</span>
-                        <img className={'w-20 rounded-full'} src={imgPreview} />
+                        <img className={'w-20 rounded-full'} src={imgPreview}/>
                     </label>
                     <input
                         className={'mt-2 block w-full text-sm rounded-lg border cursor-pointer text-gray-400 focus:outline-none bg-gray-700 border-gray-600 file:font-semibold file:rounded-lg file:border-0 file:p-1 file:m-1 file:bg-gray-500 file:cursor-pointer file:text-white'}

@@ -5,11 +5,11 @@ interface Props {
 }
 
 const Loader = ({className}: Props) => {
-    return(
-      <div
-        style={{borderTopColor: 'transparent'}}
-        className={`${className} mr-3 animate-spin inline-block border-2 rounded-full`}
-      ></div>
-)
+    return (
+        <div
+            style={{borderTopColor: 'transparent'}}
+            className={`${className} mr-3 animate-spin inline-block border-2 rounded-full`}
+        ></div>
+    )
 }
 export default Loader

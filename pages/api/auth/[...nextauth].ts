@@ -27,6 +27,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             }
         }
     }
+
     return await NextAuth(req, res, {
         pages: {
             signIn: '/login'

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import React, {useRef, Fragment} from 'react'
 import {useSession} from "next-auth/react";
@@ -18,7 +18,7 @@ function classNames(...classes: string[]) {
 
 const Nav = () => {
     const router = useRouter();
-    const {data: session, status}  = useSession();
+    const {data: session, status} = useSession();
     const currentPath = router.pathname;
     const menuDropdown = useRef<HTMLDivElement>(null)
     const menuButton = useRef<HTMLDivElement>(null)
@@ -84,34 +84,35 @@ const Nav = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-start pl-3 sm:pl-0 sm:items-stretch sm:justify-start grow">
+                    <div
+                        className="flex items-center justify-start pl-3 sm:pl-0 sm:items-stretch sm:justify-start grow">
                         <div className="self-center">
                             <Link href="/">
-                                    <p className={'text-neutral-100 text-base font-mono'}>nullnode</p>
+                                <p className={'text-neutral-100 text-base font-mono'}>nullnode</p>
                             </Link>
                         </div>
                         <div className="hidden sm:block sm:ml-6">
                             <div className="flex space-x-4">
                                 {navigation
-                                    .filter((item) =>  !item.authRequired
+                                    .filter((item) => !item.authRequired
                                         || (item.authRequired === (status === 'authenticated')) && (session?.user.roles?.includes(item.role))
                                     )
-                                            .map((item) => (
+                                    .map((item) => (
                                         <Link
                                             href={item.href}
                                             key={item.name}
-                                            >
-                                            <a
-                                            className={classNames(
-                                                currentPath.includes(item.href)
-                                                    ? "bg-sky-700 text-white"
-                                                    : "text-gray-300 bg-gray-800 hover:text-white",
-                                                "px-3 py-2 rounded-md text-sm font-medium hover:bg-sky-700"
-                                            )}
-                                            aria-current={currentPath === item.href ? "page" : undefined}
                                         >
-                                            {item.name}
-                                        </a>
+                                            <a
+                                                className={classNames(
+                                                    currentPath.includes(item.href)
+                                                        ? "bg-sky-700 text-white"
+                                                        : "text-gray-300 bg-gray-800 hover:text-white",
+                                                    "px-3 py-2 rounded-md text-sm font-medium hover:bg-sky-700"
+                                                )}
+                                                aria-current={currentPath === item.href ? "page" : undefined}
+                                            >
+                                                {item.name}
+                                            </a>
                                         </Link>
                                     ))}
                             </div>
@@ -119,10 +120,12 @@ const Nav = () => {
                     </div>
                     {status === 'unauthenticated' && <div className={"hidden sm:flex sm:gap-2"}>
                         <Link href={'/login'}>
-                            <span className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Log In</span>
+                            <span
+                                className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Log In</span>
                         </Link>
                         <Link href={'/register'}>
-                            <span className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Sign Up</span>
+                            <span
+                                className={'text-sm hover:text-white hover:bg-sky-700 bg-gray-800 rounded-md p-2 cursor-pointer'}>Sign Up</span>
                         </Link>
                     </div>}
                     {status === 'authenticated' && <Menu as="div" className="relative z-10">

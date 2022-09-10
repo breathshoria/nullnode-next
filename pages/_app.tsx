@@ -16,14 +16,14 @@ function MyApp({
 ) {
     return (
         <SessionProvider session={session}>
-        <div className={'bg-gray-800 h-full text-white'}>
-            <Head>
-                <link rel="shortcut icon" href="/favicon.svg" />
-            </Head>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </div>
+            <div className={'bg-gray-800 h-full text-white'}>
+                <Head>
+                    <link rel="shortcut icon" href="/favicon.svg"/>
+                </Head>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </div>
         </SessionProvider>
     )
 }

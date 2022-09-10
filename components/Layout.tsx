@@ -6,10 +6,10 @@ import {setBearer} from "../utils/axiosInterceptors";
 import Loader from "./helpers/Loader";
 
 interface Props {
-    children: ReactNode;
+    children: ReactNode
 }
 
-export default function Layout({ children }: Props ) {
+export default function Layout({children}: Props) {
     const {data: session, status} = useSession();
     useEffect(() => {
         if (session?.error === "RefreshAccessTokenError") {
@@ -31,9 +31,9 @@ export default function Layout({ children }: Props ) {
 
     return (
         <>
-            <Navbar />
+            <Navbar/>
             <main>{children}</main>
-            <Footer />
+            <Footer/>
         </>
     )
 }

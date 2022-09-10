@@ -6,7 +6,7 @@ interface Props {
 
 const PageHead = ({title}: Props) => {
 
-    return(
+    return (
         <Head><title>{`${title} - nullnode`}</title></Head>
     )
 }

@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { useRouter } from 'next/router'
+import {useRouter} from 'next/router'
 //import api from "../../utils/axiosInterceptors";
 //import {useParams} from "react-router-dom";
 //import Loader from "../helpers/Loader";
 import ReactMarkdown from 'react-markdown'
 import axios from "axios";
 import {GetStaticProps, GetStaticPaths, NextPage} from "next";
-import { ParsedUrlQuery } from 'querystring';
+import {ParsedUrlQuery} from 'querystring';
 import ProjectType from "../../types/project.interface";
 import PageHead from "../../components/PageHead";
 import SubscribeButton from "../../components/project/SubscribeButton";
@@ -32,7 +32,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
     };
 };
 
-export const getStaticProps: GetStaticProps<Props, Params> = async(context) => {
+export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
     try {
         const {id} = context.params!
         const response = await axios.get(`http://localhost:3000/projects/getProject/${id}`);
@@ -51,9 +51,9 @@ const Project: NextPage<Props> = ({project}) => {
     return (
         <>
             <div className={'min-h-screen p-5 w-full flex flex-col gap-4 items-center mx-auto'}>
-                <PageHead title={project.title} />
+                <PageHead title={project.title}/>
                 <div
-                    className={'w-1/2 p-2 flex flex-col justify-evenly gap-1 sm:gap-0 sm:flex-row items-center border-b-2 border-b-sky-700'}
+                    className={'w-1/2 p-2 flex flex-col justify-evenly gap-1 sm:gap-0 sm:flex-row items-center border-b-2 rounded-b-sm border-b-sky-700'}
                 >
                     <img
                         className={'w-20 inline-block rounded-full p-1'}
@@ -69,13 +69,15 @@ const Project: NextPage<Props> = ({project}) => {
                         </div>
                         <div className={'bg-white rounded-md p-2 min-w-max flex flex-row gap-2'}>
                             <a href={project.website}><img className={'w-5'} src={'/website.svg'} alt={'website logo'}/></a>
-                            <a href={project.github}><img className={'w-5'} src={'/github.svg'} alt={'github logo'}/></a>
+                            <a href={project.github}><img className={'w-5'} src={'/github.svg'}
+                                                          alt={'github logo'}/></a>
                             <a href={project.discord}><img className={'w-5'} src={'/discord.svg'} alt={'discord logo'}/></a>
-                            <a href={project.telegram}><img className={'w-5'} src={'/telegram.svg'} alt={'tg logo'}/></a>
+                            <a href={project.telegram}><img className={'w-5'} src={'/telegram.svg'}
+                                                            alt={'tg logo'}/></a>
                         </div>
                     </div>
                 </div>
-                <SubscribeButton projectId={project.id} />
+                <SubscribeButton projectId={project.id}/>
                 <div className={'mt-2 grid sm:grid-cols-2 gap-5 w-3/4'}>
                     <div className={'border-sky-700 border-2 rounded-xl p-4 flex flex-col'}>
                         <p className={'text-center font-medium text-lg bg-sky-700 mb-2 rounded-md'}>Summary</p>
@@ -83,7 +85,8 @@ const Project: NextPage<Props> = ({project}) => {
                     </div>
                     <div className={'border-sky-700 border-2 rounded-xl p-4 flex flex-col'}>
                         <p className={'text-center font-medium text-lg bg-sky-700 mb-2 rounded-md'}>Contribution</p>
-                        <ReactMarkdown className={'prose prose-md prose-invert m-0'}>{project.involvement}</ReactMarkdown>
+                        <ReactMarkdown
+                            className={'prose prose-md prose-invert m-0'}>{project.involvement}</ReactMarkdown>
                     </div>
                 </div>
                 <div className={'mt-2 flex flex-col w-3/4'}>

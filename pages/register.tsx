@@ -38,7 +38,7 @@ const Register = () => {
     }
     return (
         <div className={'min-h-screen mt-5 flex flex-col items-center'}>
-            <PageHead title={'Register'} />
+            <PageHead title={'Register'}/>
             {/* {auth?.error && <Error error={auth.error}></Error>} */}
             <form className={'w-2/3 sm:w-1/3'}>
                 <div className={'pb-2'}>

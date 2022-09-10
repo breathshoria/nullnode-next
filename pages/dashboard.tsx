@@ -17,7 +17,7 @@ const Dashboard = () => {
     const [isEditFormOpened, setEditFormOpened] = useState(false);
     const [editableProjectId, setEditableProjectId] = useState<number | null>(null);
     const [isLoading, setLoading] = useState(false);
-    const {data: session, status}  = useSession();
+    const {data: session, status} = useSession();
     const router = useRouter();
 
     const fetchProjects = async () => {
@@ -78,20 +78,20 @@ const Dashboard = () => {
     }
 
     if (isLoading) {
-        return(
+        return (
             <div className={'min-h-screen bg-gray-800 flex flex-col items-center justify-center'}>
-                <Loader className={'w-10 h-10'} />
+                <Loader className={'w-10 h-10'}/>
             </div>
         )
     }
 
     if (status === 'unauthenticated') {
         router.replace('/login');
-        return <div className={'bg-gray-800 h-screen mb-12'} />
+        return <div className={'bg-gray-800 h-screen mb-12'}/>
     }
 
     if (!session?.user.roles?.includes('admin')) {
-        return(
+        return (
             <div className={'bg-gray-800 h-screen mb-12 flex flex-col items-center justify-center'}>
                 <p>Unauthorized to watch this page</p>
             </div>
@@ -100,7 +100,7 @@ const Dashboard = () => {
 
     return (
         <div className="min-h-screen">
-            <PageHead title={'Dashboard'} />
+            <PageHead title={'Dashboard'}/>
             <span className={'text-2xl inline-block w-full text-center p-2'}>Manage projects</span>
             <div className={'p-2 mt-5 flex flex-col gap-4 justify-center items-center'}>
                 {projects?.map((project, index) => (
