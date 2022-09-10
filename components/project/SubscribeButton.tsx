@@ -39,12 +39,34 @@ const SubscribeButton = ({projectId}: Props) => {
 
     const subscribeProject = async (projectId: number) => {
         try {
+            setLoading(true);
             setProjects(prev => [...prev, {id: projectId}]);
-            await api.post('/users/subscribeProject', {
-                projectId: [...projects, {id: projectId}]
+            await api.post('/users/subscribe', {
+                projectId: {
+                    id: projectId
+                }
             })
         } catch {
             setProjects(prev => prev.filter(el => el.id !== projectId))
+        } finally {
+            setLoading(false);
+        }
+
+    }
+
+    const unsubscribeProject = async (projectId: number) => {
+        try {
+            setLoading(true);
+            setProjects(prev => prev.filter(project => project.id !== projectId));
+            await api.post('/users/unsubscribe', {
+                projectId: {
+                    id: projectId
+                }
+            });
+        } catch {
+            setProjects(prev => [...prev, {id: projectId}]);
+        } finally {
+            setLoading(false);
         }
 
     }
@@ -57,27 +79,33 @@ const SubscribeButton = ({projectId}: Props) => {
     }, [projectId])
 
     if (isLoading) {
-        return <Loader className={'w-5 h-5'}/>
+        return (
+            <div className={'flex flex-row justify-items-center justify-center items-center p-2'}>
+                <Loader className={'w-6 h-6'}/>
+            </div>
+        )
     }
 
     if (!session?.user) {
         return (
-            <div className={'bg-sky-700 text-white rounded-md hover:bg-sky-600'}>
-                <button className={'text-center py-2 px-8'} onClick={() => signIn()}>Subscribe</button>
+            <div className={'bg-sky-700 text-white rounded-md hover:bg-sky-600 p-2'}>
+                <button className={'text-center'} onClick={() => signIn()}>Subscribe</button>
             </div>
         )
     }
 
     if (projects?.find(el => el.id === projectId)) {
         return (
-            <div className={'bg-sky-600 text-white rounded-md'}>
-                <p className={'text-center py-2 px-8'}>You are subscribed to this project!</p>
-            </div>
+                <div className={'bg-sky-600 text-white rounded-md p-2'}>
+                    <button className={'text-center'} onClick={() => unsubscribeProject(projectId)}>You are
+                        subscribed!
+                    </button>
+                </div>
         )
     }
     return (
-        <div className={'bg-sky-700 text-white rounded-md hover:bg-sky-600'}>
-            <button className={'text-center py-2 px-8'} onClick={() => subscribeProject(projectId)}>Subscribe</button>
+        <div className={'bg-sky-700 text-white rounded-md hover:bg-sky-600 p-2'}>
+            <button className={'text-center'} onClick={() => subscribeProject(projectId)}>Subscribe</button>
         </div>
     )
 }
