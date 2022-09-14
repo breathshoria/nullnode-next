@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import ProjectType from "../../types/project.interface";
-import axios from "axios";
 import PageHead from "../PageHead";
+import {api} from "../../utils/axiosInterceptors";
 
 type AddProjectType = Omit<ProjectType, "id" | "logoUrl"> & {
     logo: File | null;
@@ -50,7 +50,7 @@ const AddProject = ({toggleAddForm}: Props) => {
         for (let key in project) {
             formData.append(key, (project as any)[key])
         }
-        await axios.post(`${process.env.NEXT_PUBLIC_API}/projects/addProject`, formData)
+        await api.post('/projects/addProject', formData)
         toggleAddForm();
     }
 

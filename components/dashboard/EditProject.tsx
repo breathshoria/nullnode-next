@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import {api} from "../../utils/axiosInterceptors";
 import ProjectType from "../../types/project.interface";
 import Loader from "../helpers/Loader";
 import PageHead from "../PageHead";
@@ -37,7 +37,7 @@ const EditProject = ({toggleEditForm, projectId}: Props) => {
     const [isLoading, setLoading] = useState(true);
 
     const fetchProject = async () => {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API}/projects/getProject/${projectId}`)
+        const response = await api.get(`/projects/getProject/${projectId}`)
         response.data.logo = null;
         setImgPreview(`${process.env.NEXT_PUBLIC_API}/${response.data.logoUrl}`);
         setProject(response.data);
@@ -68,7 +68,7 @@ const EditProject = ({toggleEditForm, projectId}: Props) => {
             }
             formData.append(key, (project as any)[key])
         }
-        await axios.post(`${process.env.NEXT_PUBLIC_API}/projects/updateProject`, formData)
+        await api.post('/projects/updateProject', formData)
         toggleEditForm();
     }
 
