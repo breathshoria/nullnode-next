@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
-    className: string;
+  className: string;
 }
 
-const Loader = ({className}: Props) => {
-    return (
-        <div
-            style={{borderTopColor: 'transparent'}}
-            className={`${className} animate-spin inline-block border-2 rounded-full`}
-        ></div>
-    )
-}
-export default Loader
+const Loader = ({ className }: Props) => {
+  return (
+    <div
+      style={{ borderTopColor: "transparent" }}
+      className={`${className} animate-spin inline-block border-2 rounded-full`}
+    ></div>
+  );
+};
+export default Loader;

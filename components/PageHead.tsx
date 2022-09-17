@@ -1,14 +1,15 @@
 import Head from "next/head";
 
 interface Props {
-    title: string
+  title: string;
 }
 
-const PageHead = ({title}: Props) => {
+const PageHead = ({ title }: Props) => {
+  return (
+    <Head>
+      <title>{`${title} - nullnode`}</title>
+    </Head>
+  );
+};
 
-    return (
-        <Head><title>{`${title} - nullnode`}</title></Head>
-    )
-}
-
-export default PageHead
+export default PageHead;
