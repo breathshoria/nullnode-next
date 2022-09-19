@@ -143,12 +143,12 @@ const EditProject = ({ toggleEditForm, projectId }: Props) => {
         <div className={"pt-2 pb-2"}>
           <label>
             <span className={"text-lg sm:text-base"}>Description</span>
-            <textarea
+            <input
               className={
                 "mt-3 p-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               name={"description"}
-              rows={5}
+              type="text"
               placeholder={"Describe the project"}
               value={project.description}
               onChange={handleChange}
