@@ -82,7 +82,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Title</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"title"}
@@ -111,7 +111,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Description</span>
             <textarea
               className={
-                "mt-3 p-2 border text-white sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white mb-1"
+                "mt-3 p-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               name={"description"}
               rows={5}
@@ -126,7 +126,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Summary</span>
             <textarea
               className={
-                "mt-3 p-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                "mt-3 p-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               value={project.summary}
               rows={5}
@@ -141,7 +141,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Contribution</span>
             <textarea
               className={
-                "mt-3 p-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                "mt-3 p-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               value={project.involvement}
               name={"involvement"}
@@ -156,7 +156,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Guide</span>
             <textarea
               className={
-                "mt-3 p-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                "mt-3 p-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               value={project.guide}
               name={"guide"}
@@ -171,7 +171,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Stage</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"stage"}
@@ -186,7 +186,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Start Date</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"startDate"}
@@ -201,7 +201,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Github</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"github"}
@@ -216,7 +216,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Website</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2  border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"website"}
@@ -231,7 +231,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Telegram</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"telegram"}
@@ -246,7 +246,7 @@ const AddProject = ({ toggleAddForm }: Props) => {
             <span className={"text-lg sm:text-base"}>Discord</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-white sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"discord"}

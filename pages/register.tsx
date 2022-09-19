@@ -45,7 +45,7 @@ const Register = () => {
             <span className={"text-lg sm:text-base"}>Username</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2  border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"username"}
@@ -59,7 +59,7 @@ const Register = () => {
             <span className={"text-lg sm:text-base"}>E-mail</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-1"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500 mb-1"
               }
               type="text"
               name={"email"}
@@ -73,7 +73,7 @@ const Register = () => {
             <span className={"text-lg sm:text-base"}>Password</span>
             <input
               className={
-                "mt-3 h-10 pl-2 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                "mt-3 h-10 pl-2 border sm:text-sm rounded-lg block w-full bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
               }
               value={credentials.password}
               name={"password"}
