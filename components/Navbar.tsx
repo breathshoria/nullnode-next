@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import React, { useRef, Fragment } from "react";
+import React, { useRef, Fragment, useState } from "react";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
+import AnimatedToggle from "./helpers/AnimatedToggle";
 
 const navigation = [
   { name: "Projects", href: "/projects", authRequired: false },
@@ -18,40 +19,28 @@ function classNames(...classes: string[]) {
 const Nav = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
+  const [isMenuOpened, setMenuOpened] = useState(false);
   const currentPath = router.pathname;
-  const menuDropdown = useRef<HTMLDivElement>(null);
   const menuButton = useRef<HTMLDivElement>(null);
-  const openMenu = () => {
-    if (menuDropdown.current?.classList.contains("opacity-100")) {
-      setTimeout(() => {
-        menuDropdown.current?.classList.add("hidden");
-      }, 200);
-      menuDropdown.current?.classList.add("opacity-0");
-      menuDropdown.current?.classList.remove("opacity-100");
-      return;
+
+  const toggleMenu = () => {
+    if (isMenuOpened) {
+      setTimeout(() => setMenuOpened(false), 100);
     }
-    menuDropdown.current?.classList.remove("hidden");
-    setTimeout(() => {
-      menuDropdown.current?.classList.remove("opacity-0");
-      menuDropdown.current?.classList.add("opacity-100");
-    }, 5);
-    menuButton.current?.addEventListener("focusout", () => {
-      setTimeout(() => {
-        menuDropdown.current?.classList.add("hidden");
-      }, 200);
-      menuDropdown.current?.classList.add("opacity-0");
-      menuDropdown.current?.classList.remove("opacity-100");
-    });
+    setMenuOpened(true);
   };
 
   return (
     <Disclosure as="nav" className="bg-gray-900 rounded-b-lg">
       <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
         <div
-          className="hidden fixed z-20 transition-opacity duration-200 opacity-0 ease-in-out absolute top-14 left-1 sm:invisible"
-          ref={menuDropdown}
+          className={
+            isMenuOpened
+              ? "fixed z-20 absolute top-14 left-1 sm:hidden"
+              : "hidden"
+          }
         >
-          <div className="flex flex-col p-2 border w-56 h-56 shadow-black shadow-sm rounded-b-md border-gray-900 bg-gray-900">
+          <div className="flex flex-col p-2 border w-56 h-56 shadow-black shadow-sm rounded-b-md border-gray-900 bg-gray-900 text-lg">
             {navigation
               .filter(
                 (item) =>
@@ -60,30 +49,44 @@ const Nav = () => {
                     session?.user.roles?.includes(item.role))
               )
               .map((item) => (
-                <Link
-                  href={item.href}
-                  key={item.name}
-                  className={classNames(
-                    currentPath.includes(item.href)
-                      ? "bg-sky-700 text-white"
-                      : "text-gray-300 bg-gray-900 hover:text-white",
-                    "px-3 py-2 inline-block text-md hover:bg-sky-700"
-                  )}
-                  aria-current={currentPath === item.href ? "page" : undefined}
-                >
-                  {item.name}
+                <Link href={item.href} key={item.name}>
+                  <span
+                    className={classNames(
+                      currentPath.includes(item.href)
+                        ? "bg-sky-700 text-white"
+                        : "text-gray-300 bg-gray-900 hover:text-white",
+                      "px-2 py-2 inline-block hover:bg-sky-700 rounded-lg mb-2 cursor-pointer"
+                    )}
+                    aria-current={
+                      currentPath === item.href ? "page" : undefined
+                    }
+                  >
+                    {item.name}
+                  </span>
                 </Link>
               ))}
+            {status === "unauthenticated" && (
+              <Link href={"/login"}>
+                <span
+                  className={
+                    "text-gray-300 bg-gray-900 hover:text-white px-2 py-2 inline-block hover:bg-sky-700 rounded-lg cursor-pointer"
+                  }
+                >
+                  Log In
+                </span>
+              </Link>
+            )}
           </div>
         </div>
         <div className="flex justify-between justify-items-center items-center h-14">
-          <div className={"pl-1 sm:hidden cursor-pointer"}>
-            <div tabIndex={1} ref={menuButton} onClick={openMenu}>
-              <div className="space-y-1">
-                <div className="w-5 h-0.5 bg-gray-200" />
-                <div className="w-5 h-0.5 bg-gray-200" />
-                <div className="w-5 h-0.5 bg-gray-200" />
-              </div>
+          <div className={"sm:hidden cursor-pointer"}>
+            <div
+              tabIndex={1}
+              ref={menuButton}
+              onClick={toggleMenu}
+              onBlur={toggleMenu}
+            >
+              <AnimatedToggle trigger={isMenuOpened} />
             </div>
           </div>
           <div className="flex items-center justify-start pl-3 sm:pl-0 sm:items-stretch sm:justify-start grow">
