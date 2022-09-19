@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import ProjectCard from "../components/project/ProjectCard";
-import { GetStaticProps, NextPage } from "next";
+import { NextPage } from "next";
 import ProjectType from "../types/project.interface";
 import PageHead from "../components/PageHead";
+import {api} from "../utils/axiosInterceptors";
 
 interface Props {
   projects: ProjectType[];
@@ -11,7 +11,7 @@ interface Props {
 
 export async function getStaticProps() {
   try {
-    const response = await axios.get("http://localhost:3000/projects");
+    const response = await api.get("/projects");
     const mappedProjects = response.data.map((project: ProjectType) => {
       return {
         id: project.id,
