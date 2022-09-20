@@ -4,11 +4,11 @@ import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
 import { SessionProvider } from "next-auth/react";
 import React from "react";
-import { NextPage } from "next";
+import { Session } from "next-auth";
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+function App({ Component, pageProps }: AppProps<{ session: Session }>) {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider session={pageProps.session}>
       <div className={"bg-gray-800 h-full text-white"}>
         <Head>
           <link rel="shortcut icon" href="/favicon.svg" />
@@ -21,4 +21,4 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   );
 }
 
-export default MyApp;
+export default App;
