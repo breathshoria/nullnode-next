@@ -5,16 +5,13 @@ import React, { useRef, Fragment, useState } from "react";
 import { useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import AnimatedToggle from "./helpers/AnimatedToggle";
+import clsx from "clsx";
 
 const navigation = [
   { name: "Projects", href: "/projects", authRequired: false },
   { name: "Dashboard", href: "/dashboard", authRequired: true, role: "admin" },
   { name: "About", href: "/about", authRequired: false },
 ];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 const Nav = () => {
   const router = useRouter();
@@ -34,11 +31,10 @@ const Nav = () => {
     <Disclosure as="nav" className="bg-gray-900 rounded-b-lg">
       <div className="max-w-full mx-auto px-2 sm:px-4 lg:px-6">
         <div
-          className={
-            isMenuOpened
-              ? "fixed z-20 absolute top-14 left-1 sm:hidden"
-              : "hidden"
-          }
+          className={clsx(
+            isMenuOpened ? "fixed" : "hidden",
+            "z-20 absolute top-14 left-1 sm:hidden"
+          )}
         >
           <div className="flex flex-col p-2 border w-56 h-56 shadow-black shadow-sm rounded-b-md border-gray-900 bg-gray-900 text-lg">
             {navigation
@@ -51,7 +47,7 @@ const Nav = () => {
               .map((item) => (
                 <Link href={item.href} key={item.name}>
                   <span
-                    className={classNames(
+                    className={clsx(
                       currentPath.includes(item.href)
                         ? "bg-sky-700 text-white"
                         : "text-gray-300 bg-gray-900 hover:text-white",
@@ -109,7 +105,7 @@ const Nav = () => {
                   .map((item) => (
                     <Link href={item.href} key={item.name}>
                       <a
-                        className={classNames(
+                        className={clsx(
                           currentPath.includes(item.href)
                             ? "bg-sky-700 text-white"
                             : "text-gray-300 bg-gray-800 hover:text-white",
@@ -165,9 +161,9 @@ const Nav = () => {
                 <Menu.Items className="origin-top-right absolute p-2 right-0 mt-2 w-fit rounded-md shadow-lg bg-gray-900  focus:outline-none">
                   <Menu.Item>
                     <button
-                      className={classNames(
+                      className={
                         "block w-20 py-2 text-sm text-white hover:bg-sky-700"
-                      )}
+                      }
                     >
                       <span className={"text-sm"}>Profile</span>
                     </button>
@@ -175,7 +171,7 @@ const Nav = () => {
                   <Menu.Item>
                     <button
                       onClick={() => signOut()}
-                      className={classNames(
+                      className={clsx(
                         "block w-20 py-2 text-sm text-white hover:bg-sky-700"
                       )}
                     >
