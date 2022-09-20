@@ -59,7 +59,7 @@ const Login = () => {
             onClick={handleSubmit}
             onChange={(e) => handleChange(e)}
           >
-            {isLoading && <Loader className={"w-5 h-5"}></Loader>}
+            {isLoading && <Loader className={"w-5 h-5 mr-2"}></Loader>}
             <span className={"text-lg sm:text-base"}>Login</span>
           </button>
 
