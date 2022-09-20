@@ -86,7 +86,7 @@ const Register = () => {
           className="mt-3 bg-gray-700 hover:bg-sky-700 text-white px-3 py-2 h-10 rounded-md text-sm font-medium flex items-center"
           onClick={handleSubmit}
         >
-          {isLoading && <Loader className={"w-5 h-5"}></Loader>}
+          {isLoading && <Loader className={"w-5 h-5 mr-2"}></Loader>}
           <span className={"text-lg sm:text-base"}>Register</span>
         </button>
       </form>
