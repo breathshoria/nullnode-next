@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-//import api from "../../utils/axiosInterceptors";
-//import {useParams} from "react-router-dom";
-//import Loader from "../helpers/Loader";
+import {api} from "../../utils/axiosInterceptors";
+
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
@@ -20,7 +18,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const response = await axios.get("http://localhost:3000/projects");
+  const response = await api.get("/projects");
   const paths = response.data.map((project: ProjectType) => {
     return {
       params: { id: project.id?.toString() },
@@ -37,8 +35,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 ) => {
   try {
     const { id } = context.params!;
-    const response = await axios.get(
-      `http://localhost:3000/projects/getProject/${id}`
+    const response = await api.get(
+      `/projects/getProject/${id}`
     );
     const project: ProjectType = response.data;
     return {
