@@ -14,3 +14,11 @@ export default interface ProjectType {
   guide: string;
   onGoing: boolean;
 }
+
+export type AddProjectType = Omit<ProjectType, "id" | "logoUrl"> & {
+  logo: File | null;
+};
+
+export type EditProjectType = ProjectType & {
+  logo: File | null;
+};
